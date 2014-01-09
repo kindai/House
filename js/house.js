@@ -43,7 +43,7 @@ var House = function( view ){
 
     this.ceiling.position.y = this.ground.position.y + this.wallHeight + this.groundThick/2 + this.ceilingThick/2;
 
-    mSignals.objectAdd.dispatch(this.ceiling);
+    //mSignals.objectAdd.dispatch(this.ceiling);
 
     var materialWOT = new THREE.MeshLambertMaterial({ ambient: 0xdddddd, color: 0xffffff, shading: THREE.FlatShading });
 

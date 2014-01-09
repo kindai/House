@@ -25,10 +25,12 @@ var View = function(){
 
 //    sceneHelpers.add(new THREE.PointLightHelper(directionalLight, 10));
 
-    camera = new THREE.PerspectiveCamera(50, $('.middle').width()/$('.middle').height(), 1, 10000);
-    camera.position.set( 300, 100, 500 );
+    camera = new THREE.OrthographicCamera(-$('.middle').width()/2-200, $('.middle').width()/2+200,
+        $('.middle').height()/2+300, -$('.middle').height()/2-100,
+        - 10000, 10000);
+    camera.position.set( 1, 1, 1 );
 
-    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer = new THREE.WebGLRenderer();
     renderer.setSize($('.middle').width(), $('.middle').height());
     renderer.autoClear = false;
     renderer.autoUpdateScene = false;
