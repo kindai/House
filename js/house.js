@@ -25,7 +25,7 @@ var House = function( view ){
     pointLight.position.y = this.wallHeight;
     pointLight.position.z = 0;
 
-    mSignals.objectAdd.dispatch(pointLight);
+    view.mSignals.objectAdd.dispatch(pointLight);
 
     this.ground = new THREE.Mesh(new THREE.CubeGeometry(this.groundWidth,this.groundThick,this.groundLongth),
         new THREE.MeshPhongMaterial({ ambient: 0xaaaaaa, color: 0xdddddd, specular: 0x999900, shininess: 30, shading: THREE.FlatShading }));
@@ -36,14 +36,14 @@ var House = function( view ){
     tex.repeat.set( 4*this.groundLongth/this.wallHeight, 4*this.groundLongth/this.wallHeight );
     this.setObjectTexture(tex, this.ground);
 
-    mSignals.objectAdd.dispatch(this.ground);
+    view.mSignals.objectAdd.dispatch(this.ground);
 
     this.ceiling = new THREE.Mesh(new THREE.CubeGeometry(this.groundWidth,this.ceilingThick,this.groundLongth),
         new THREE.MeshLambertMaterial( { ambient: 0xeeeeee, color: 0x000000, shading: THREE.FlatShading }));
 
     this.ceiling.position.y = this.ground.position.y + this.wallHeight + this.groundThick/2 + this.ceilingThick/2;
 
-    //mSignals.objectAdd.dispatch(this.ceiling);
+    //view.mSignals.objectAdd.dispatch(this.ceiling);
 
     var materialWOT = new THREE.MeshLambertMaterial({ ambient: 0xdddddd, color: 0xffffff, shading: THREE.FlatShading });
 
@@ -71,10 +71,10 @@ var House = function( view ){
     this.walls.south.position.y = this.wallHeight/2 + this.groundThick/2;
     this.walls.south.position.x = -this.groundLongth/2 + this.wallThick/2;
 
-//    mSignals.objectAdd.dispatch(this.walls.east);
-    mSignals.objectAdd.dispatch(this.walls.west);
-    mSignals.objectAdd.dispatch(this.walls.north);
-    mSignals.objectAdd.dispatch(this.walls.south);
+//    view.mSignals.objectAdd.dispatch(this.walls.east);
+    view.mSignals.objectAdd.dispatch(this.walls.west);
+    view.mSignals.objectAdd.dispatch(this.walls.north);
+    view.mSignals.objectAdd.dispatch(this.walls.south);
 
 
 }

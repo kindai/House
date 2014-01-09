@@ -1,20 +1,27 @@
 /**
  * Created by kin on 1/6/14.
  */
-
-var mSignals={
-    objectSelected: new signals.Signal(),
-    objectChange: new signals.Signal(),
-    objectAdd: new signals.Signal(),
-
-    rerender: new signals.Signal()
-}
+//
+//var mSignals={
+//    objectSelected: new signals.Signal(),
+//    objectChange: new signals.Signal(),
+//    objectAdd: new signals.Signal(),
+//
+//    rerender: new signals.Signal()
+//}
 
 var View = function(){
     var scene, camera, renderer, projector, sceneHelpers;
     var selectedBox, selected, transformControl, controls;
     var ray;
     var objects = [];
+    this.mSignals={
+        objectSelected: new signals.Signal(),
+        objectChange: new signals.Signal(),
+        objectAdd: new signals.Signal(),
+
+        rerender: new signals.Signal()
+    }
 
     scene = new THREE.Scene();
     sceneHelpers = new THREE.Scene();
@@ -51,9 +58,9 @@ var View = function(){
     selectedBox.visible = false;
     sceneHelpers.add(selectedBox)
 
-    var grid = new THREE.GridHelper( 1000, 100 );
-    grid.setColors( 0x444444, 0x888888 );
-    sceneHelpers.add( grid );
+//    var grid = new THREE.GridHelper( 1000, 100 );
+//    grid.setColors( 0x444444, 0x888888 );
+//    sceneHelpers.add( grid );
 
     transformControl = new THREE.TransformControls(camera, renderer.domElement);
     transformControl.addEventListener( 'change', function () {
@@ -67,7 +74,7 @@ var View = function(){
         }
         if ( selected !== null ) {
 
-            mSignals.objectSelected.dispatch( selected );
+            this.mSignals.objectSelected.dispatch( selected );
 
         }
 
@@ -171,7 +178,7 @@ var View = function(){
         this.mSignals.objectChange.dispatch( object );
     }
 
-    mSignals.objectChange.add( function( object ){
+    this.mSignals.objectChange.add( function( object ){
 
         selectedBox.visible = false;
         transformControl.detach();
@@ -197,12 +204,12 @@ var View = function(){
 
     })
 
-    mSignals.objectAdd.add( function( object ){
+    this.mSignals.objectAdd.add( function( object ){
         scene.add(object);
         objects.push(object);
     })
 
-    mSignals.rerender.add(function(){
+    this.mSignals.rerender.add(function(){
         render();
     })
 
