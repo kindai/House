@@ -11,7 +11,8 @@
 //}
 
 var View = function(){
-    var scene, camera, renderer, projector, sceneHelpers;
+    var me = this;
+    var camera, renderer, projector, sceneHelpers;
     var selectedBox, selected, transformControl, controls;
     var ray;
     var objects = [];
@@ -23,12 +24,12 @@ var View = function(){
         rerender: new signals.Signal()
     }
 
-    scene = new THREE.Scene();
+    this.scene = new THREE.Scene();
     sceneHelpers = new THREE.Scene();
 
     var ambientLight = new THREE.AmbientLight(0xffffff);
 
-    scene.add( ambientLight );
+    this.scene.add( ambientLight );
 
 //    sceneHelpers.add(new THREE.PointLightHelper(directionalLight, 10));
 
@@ -166,16 +167,16 @@ var View = function(){
 
     function render() {
         requestAnimationFrame(render);
-        camera.lookAt( scene.position );
+        camera.lookAt( me.scene.position );
         renderer.clear();
-        renderer.render(scene, camera);
+        renderer.render(me.scene, camera);
         renderer.render(sceneHelpers, camera);
 
     }
 
     function select( object ){
-        this.selected = object;
-        this.mSignals.objectChange.dispatch( object );
+        me.selected = object;
+        me.mSignals.objectChange.dispatch( object );
     }
 
     this.mSignals.objectChange.add( function( object ){
@@ -205,7 +206,7 @@ var View = function(){
     })
 
     this.mSignals.objectAdd.add( function( object ){
-        scene.add(object);
+        me.scene.add(object);
         objects.push(object);
     })
 
@@ -213,6 +214,30 @@ var View = function(){
         render();
     })
 
+}
+
+View.prototype = {
+    setScene: function ( scene ) {
+
+        this.scene.name = scene.name;
+        this.scene.userData = JSON.parse( JSON.stringify( scene.userData ) );
+
+        while ( scene.children.length > 0 ) {
+
+            this.mSignals.objectAdd.dispatch( scene.children[ 0 ] );
+
+        }
+
+        this.mSignals.rerender.dispatch();
+
+    },
+
+    addObject: function ( object ) {
+
+        this.mSignals.objectAdd.dispatch(object);
+        this.mSignals.rerender.dispatch();
+
+    }
 }
 
 function onWindowResize() {

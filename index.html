@@ -19,6 +19,10 @@
                 <img class="wall-paper" src="img/dbb53e38fbca532c0337c00976ba9e451.jpg"/>
                 <img class="wall-paper" src="img/e005165567585b4542c8ec89dd54c9d21.jpg"/>
             </div>
+
+            <div id="save-load">
+                <input type="button" onclick="menu.exportScene()" value="Save Scene"/>
+            </div>
         </div>
         <div class="container middle">
         </div>
@@ -72,14 +76,25 @@
         <script src="js/libs/TransformControls.js"></script>
         <script src="js/libs/EditorControls.js"></script>
         <script src="js/libs/signals.js"></script>
+        <script src="js/libs/Loader.js"></script>
+        <script src="js/libs/ObjectExporter.js"></script>
+        <script src="js/libs/SceneExporter.js"></script>
         <script src="js/view.js"></script>
         <script src="js/house.js"></script>
         <script src="js/control.js"></script>
         <script src="js/menu.js"></script>
         <script>
             var view = new View();
-            var house = new House(view);
-            var menu = new Menu($('#menu'));
+            //var house = new House(view);
+            var menu = new Menu($('#menu'), view);
+
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.addEventListener("change", function( event ){
+                menu.load( input.files[0] );
+            })
+            $('#save-load').append(input);
+
         </script>
 	</body>
 </html>
