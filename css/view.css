@@ -1,0 +1,32 @@
+canvas { width: 100%; height: 100% }
+.wall-picker{
+    background: red;
+    width:40px;
+    height:40px;
+}
+
+.toolbar{
+    position: absolute;
+    background: white;
+    height:100%;
+}
+
+.west{
+    left: 0;
+    width: 200px;
+}
+.east{
+    right: 0;
+    width: 200px;
+}
+.middle{
+    position: absolute;
+    left: 200px;
+    height: 100%;
+}
+
+input{
+    width:70px;
+    height: 20px;
+    margin-left: 8px;
+}

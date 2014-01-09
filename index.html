@@ -1,0 +1,85 @@
+<html>
+	<head>
+		<title>My first Three.js app</title>
+        <!--<LINK rel="stylesheet" href="css/bootstrap.min.css" type="text/css">-->
+        <LINK rel="stylesheet" href="css/libs/bootstrap.css" type="text/css">
+        <LINK rel="stylesheet" href="css/libs/jquery-ui.css" type="text/css">
+        <LINK rel="stylesheet" href="css/libs/bootstrap-responsive.css" type="text/css">
+        <LINK rel="stylesheet" href="css/view.css" type="text/css">
+	</head>
+	<body>
+		<!--<script src="js/jquery-1.10.2.min.js"></script>-->
+		<!--<script src="js/three.min.js"></script>-->
+        <!--<script src="js/bootstrap.min.js"></script>-->
+        <div class="container toolbar east">
+            <div id="wall-style">
+                <img class="wall-paper" src="img/2368416_135639084600_1.jpg"/>
+                <img class="wall-paper" src="img/6a9702c38a693bb58a3b1e9b1602c6ef1.jpg"/>
+                <img class="wall-paper" src="img/d85ebfdaa8327074d849b50ac4ee86021.jpg"/>
+                <img class="wall-paper" src="img/dbb53e38fbca532c0337c00976ba9e451.jpg"/>
+                <img class="wall-paper" src="img/e005165567585b4542c8ec89dd54c9d21.jpg"/>
+            </div>
+        </div>
+        <div class="container middle">
+        </div>
+        <div class="container toolbar west">
+            <!--<div class="row-fluid">-->
+                <!--<div class="span4">-->
+                    <!--<label class="pull-right">Width</label>-->
+                <!--</div>-->
+                <!--<div class="span5">-->
+                    <!--<input class="pull-left" id="wall_width">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row-fluid">-->
+                <!--<div class="span4">-->
+                    <!--<label class="pull-right">Height</label>-->
+                <!--</div>-->
+                <!--<div class="span5 ">-->
+                    <!--<input class="pull-left" id="wall_height">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row-fluid">-->
+                <!--<div class="span4">-->
+                    <!--<label class="pull-right">Thickness</label>-->
+                <!--</div>-->
+                <!--<div class="span5 ">-->
+                    <!--<input class="pull-left" id="wall_thick">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row-fluid">-->
+                <!--<div class="span4">-->
+                    <!--<label class="pull-right">Color</label>-->
+                <!--</div>-->
+                <!--<div class="span5 ">-->
+                    <!--<input class="pull-left" id="wall_color">-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row-fluid container">-->
+                <!--<div class="ui-draggable wall-picker"-->
+                     <!--onclick="addWall($('#wall_width').val(), $('#wall_height').val(), $('#wall_thick').val(), $('#wall_color').val())" />-->
+            <!--</div>-->
+
+            <div id="menu">
+
+            </div>
+
+        </div>
+        <script src="js/libs/jquery-1.10.2.js"></script>
+        <script src="js/libs/three.js"></script>
+        <script src="js/libs/bootstrap.js"></script>
+        <script src="js/libs/jquery-ui.js"></script>
+        <script src="js/libs/TransformControls.js"></script>
+        <script src="js/libs/EditorControls.js"></script>
+        <script src="js/libs/signals.js"></script>
+        <script src="js/view.js"></script>
+        <script src="js/house.js"></script>
+        <script src="js/control.js"></script>
+        <script src="js/menu.js"></script>
+        <script>
+            var view = new View();
+            var house = new House(view);
+            var menu = new Menu($('#menu'));
+        </script>
+	</body>
+</html>
